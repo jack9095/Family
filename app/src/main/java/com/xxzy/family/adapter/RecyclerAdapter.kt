@@ -38,16 +38,19 @@ class RecyclerAdapter: PagedListAdapter<Concert, RecyclerAdapter.RecyclerViewHol
     }
 }
 
+// 最主要的功能就是处理adapter的更新，其功能就是比较两个数据集，
+// 用newList和oldList进行比较，得出最小的变化量。也就是说我们不需要再无脑的使用 notifyDataSetChanged()
 private val DIFF_CALLBACK: DiffUtil.ItemCallback<Concert> =
     object : DiffUtil.ItemCallback<Concert>() {
+        // areItemsTheSame 提供了两个对象，需你提供这个两个对象是否是同一个对象。在User对象中有一个userId,
+        // 其代表了唯一性，所以这里我就使用了oldItem?.userId == newItem?.userId。这个可根据实际情况自行判断
         override fun areItemsTheSame(oldConcert: Concert, newConcert: Concert): Boolean {
             return oldConcert.title == newConcert.title
         }
 
-        override fun areContentsTheSame(
-            oldConcert: Concert,
-            newConcert: Concert
-        ): Boolean {
+        // areContentsTheSame 也提供了两个对象，然后需要你提供这个两个对象的内容是否一致，如果不一致，那么
+        // 它就将对列表进行重绘和动画加载，反之，表示你已经显示了这个对象的内容并且没有任何的变化，那么将不做任何的操作
+        override fun areContentsTheSame(oldConcert: Concert, newConcert: Concert): Boolean {
             return oldConcert == newConcert
         }
     }
