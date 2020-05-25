@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.xxzy.family.ScribeTextView
+    <com.xxzy.family.RoundRectLayout
+        android:id="@+id/round_rl"
+        android:layout_centerInParent="true"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        >
+
+        <TextView
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:layout_centerInParent="true"
+            android:text="加入"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:text="立即"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+    </com.xxzy.family.RoundRectLayout>
+
+    <com.xxzy.family.widget.ScribeTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="Hello World!"
         android:textColor="#999999"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,4 +47,4 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
