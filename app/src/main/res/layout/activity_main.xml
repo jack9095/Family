@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.xxzy.family.RoundRectLayout
+    <com.xxzy.family.widget.RoundRectLayout
         android:id="@+id/round_rl"
         android:layout_centerInParent="true"
         android:layout_width="210dp"
@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"/>
 
-    </com.xxzy.family.RoundRectLayout>
+    </com.xxzy.family.widget.RoundRectLayout>
 
     <com.xxzy.family.widget.ScribeTextView
         android:layout_width="wrap_content"
