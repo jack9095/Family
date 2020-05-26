@@ -39,7 +39,7 @@ abstract class BaseViewModelActivity<VM : BaseViewModel>: BaseActivity() {
         initView()
     }
 
-    abstract fun providerVMClass(): Class<VM>?
+    abstract fun providerVMClass(): Class<VM>
 
     abstract fun initView()
 

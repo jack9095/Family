@@ -15,7 +15,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>() {
     val TAG = this.javaClass.simpleName
 
     override fun isBindEventBusHere(): Boolean = false
-    override fun providerVMClass(): Class<MainViewModel>? = MainViewModel::class.java
+    override fun providerVMClass(): Class<MainViewModel> = MainViewModel::class.java
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun initView() {
@@ -30,7 +30,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>() {
     override fun dataObserver() {
         viewModel.dataLiveData.observe(this, Observer {
             LogUtil.e(TAG, "数据：" + GsonUtils.toJson(it))
-//            startActivity(Intent(this@MainActivity,PagingActivity::class.java))
+            startActivity(Intent(this@MainActivity,DragPictureGoBackActivity::class.java))
         })
     }
 

@@ -44,7 +44,7 @@ class PagingActivity : BaseViewModelActivity<PagingModel>() {
 
     }
 
-    override fun providerVMClass(): Class<PagingModel>? = PagingModel::class.java
+    override fun providerVMClass(): Class<PagingModel> = PagingModel::class.java
 
     override fun initView() {
 
