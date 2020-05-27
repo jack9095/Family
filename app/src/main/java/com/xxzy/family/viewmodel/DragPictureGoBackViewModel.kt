@@ -7,9 +7,5 @@ import com.xxzy.family.model.MainBean
 
 class DragPictureGoBackViewModel: BaseViewModel() {
 
-    var liveData = MutableLiveData<MutableList<MainBean>>()
 
-    fun setData() {
-        liveData.value = getData()
-    }
 }

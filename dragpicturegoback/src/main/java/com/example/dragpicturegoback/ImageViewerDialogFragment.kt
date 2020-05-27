@@ -25,6 +25,7 @@ import kotlin.math.max
  * 放大图片弹框
  * ViewPager2 的使用非常简单，甚至比ViewPager还要简单，只要熟悉RecyclerView的肯定会写ViewPager2,
  * ViewPager2 的适配器和 RecyclerView 一模一样
+ * view?.animate()?.setDuration(200)?.alpha(0f)?.start()
  */
 open class ImageViewerDialogFragment : BaseDialogFragment() {
     private val imageViewerActionViewModel by lazy { ViewModelProvider(requireActivity()).get(ImageViewerActionViewModel::class.java) }

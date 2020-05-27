@@ -23,7 +23,6 @@ class DragPictureGoBackActivity : BaseViewModelActivity<DragPictureGoBackViewMod
 
     override fun initData() {
         recyclerView.layoutManager = GridLayoutManager(this, 3)
-        viewModel.setData()
         adapter = DragPictureGoBackAdapter(getData(),this)
         recyclerView.adapter = adapter
     }
@@ -41,12 +40,6 @@ class DragPictureGoBackActivity : BaseViewModelActivity<DragPictureGoBackViewMod
 
     fun showViewer(clickedData: MainBean,index: Int) {
         Log.e("DragPictureActivity", "点击事件")
-        //        imageViewerBuilder.setViewerFactory(new ImageViewerDialogFragment.Factory() {
-//            @NotNull @Override
-//            public ImageViewerDialogFragment build() {
-//                return new FullScreenImageVieswerDialogFragment();
-//            }
-//        });
         val dialogFragment = ImageViewerDialogFragment.Factory().build()
         dialogFragment.setData(getData(),clickedData.id,index)
         dialogFragment.show(supportFragmentManager)

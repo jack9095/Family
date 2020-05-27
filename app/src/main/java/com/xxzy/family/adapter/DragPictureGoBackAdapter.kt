@@ -12,6 +12,7 @@ import com.example.dragpicturegoback.Trans
 import com.xxzy.family.DragPictureGoBackActivity
 import com.xxzy.family.R
 import com.xxzy.family.model.MainBean
+import kotlinx.android.synthetic.main.item_image.view.*
 
 class DragPictureGoBackAdapter: RecyclerView.Adapter<DragPictureGoBackAdapter.MyViewHolder> {
 
@@ -31,12 +32,12 @@ class DragPictureGoBackAdapter: RecyclerView.Adapter<DragPictureGoBackAdapter.My
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val mainBean = lists!![position]
-        Glide.with(holder.imageView).load(mainBean.url).into(holder.imageView)
-        holder.textView.text = "$position"
+        Glide.with(holder.itemView.imageView).load(mainBean.url).into(holder.itemView.imageView)
+        holder.itemView.posTxt.text = "$position"
 
         holder.itemView.tag = mainBean
 
-        holder.imageView.setOnClickListener{
+        holder.itemView.imageView.setOnClickListener{
             Log.e("MainAdapter", "点击事件")
             activity?.showViewer(mainBean,position)
         }
@@ -45,7 +46,7 @@ class DragPictureGoBackAdapter: RecyclerView.Adapter<DragPictureGoBackAdapter.My
     override fun onViewAttachedToWindow(holder: MyViewHolder) {
         super.onViewAttachedToWindow(holder)
         val mainBean = holder.itemView.tag as MainBean
-        Trans.mapping.put(mainBean.id, holder.imageView)
+        Trans.mapping.put(mainBean.id, holder.itemView.imageView)
     }
 
     override fun onViewDetachedFromWindow(holder: MyViewHolder) {
@@ -55,7 +56,7 @@ class DragPictureGoBackAdapter: RecyclerView.Adapter<DragPictureGoBackAdapter.My
     }
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var imageView = itemView.findViewById<ImageView>(R.id.imageView)
-        var textView = itemView.findViewById<TextView>(R.id.posTxt)
+//        var imageView = itemView.findViewById<ImageView>(R.id.imageView)
+//        var textView = itemView.findViewById<TextView>(R.id.posTxt)
     }
 }
