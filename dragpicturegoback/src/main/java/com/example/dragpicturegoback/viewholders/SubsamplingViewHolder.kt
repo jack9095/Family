@@ -30,7 +30,10 @@ class SubsamplingViewHolder(override val containerView: View, callback: ImageVie
             override fun onRestore(view: SubsamplingScaleImageView2, fraction: Float) = callback.onRestore(this@SubsamplingViewHolder, view, fraction)
             override fun onRelease(view: SubsamplingScaleImageView2) = callback.onRelease(this@SubsamplingViewHolder, view)
         })
-//        requireVHCustomizer().initialize(ItemType.SUBSAMPLING, this)
+
+        subsamplingView.setOnClickListener{
+            callback.onClick(this@SubsamplingViewHolder,subsamplingView)
+        }
     }
 
     fun bind(item: ItemBean) {

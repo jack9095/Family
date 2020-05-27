@@ -17,7 +17,6 @@ import com.example.dragpicturegoback.utils.TransitionEndHelper
 import com.example.dragpicturegoback.utils.TransitionStartHelper
 import com.example.dragpicturegoback.utils.findViewWithKeyTag
 import com.example.dragpicturegoback.viewmodel.ImageViewerActionViewModel
-import com.example.dragpicturegoback.viewmodel.ImageViewerViewModel
 import com.example.dragpicturegoback.viewmodel.ViewerActions
 import kotlinx.android.synthetic.main.fragment_image_viewer_dialog.*
 import kotlin.math.max
@@ -29,7 +28,6 @@ import kotlin.math.max
  */
 open class ImageViewerDialogFragment : BaseDialogFragment() {
     private val imageViewerActionViewModel by lazy { ViewModelProvider(requireActivity()).get(ImageViewerActionViewModel::class.java) }
-    private val viewModel by lazy { ViewModelProvider(this).get(ImageViewerViewModel::class.java) }
 //    private val userCallback by lazy { requireViewerCallback() }
 
     // ViewPager2 的适配器和 RecyclerView 一模一样
@@ -65,12 +63,18 @@ open class ImageViewerDialogFragment : BaseDialogFragment() {
         view_pager2.offscreenPageLimit = 1
         view_pager2.adapter = adapter
         view_pager2.setCurrentItem(position,false)
+
+        // 监听点击上一页、下一页、弹窗消失的回调
         imageViewerActionViewModel.actionEvent.observe(viewLifecycleOwner, Observer(::handle))
     }
 
-    // 给 adapter 设置数据
+    /**
+     * data: 给 adapter 设置的数据
+     * initKey： 就是适配器数据类中的 id （点击哪个item，传进来就是哪个 item 的 id）
+     * position： 点击图片进入大图的 item 对应的角标，方便 ViewPager2 判断是哪张图片
+     */
     fun setData(data: MutableList<out ItemBean>,initKey: Long,position: Int){
-        adapter.setData(data)
+        adapter.setData(data,initKey)
         this.initKey = initKey
         this.position = position
     }
@@ -82,29 +86,38 @@ open class ImageViewerDialogFragment : BaseDialogFragment() {
         }
     }
 
+    // 适配器的回调监听
     private val adapterListener by lazy {
         object : ImageViewerAdapterListener {
             override fun onInit(viewHolder: RecyclerView.ViewHolder) {
+                Log.e("ImageAdapterListener","onInit")
                 TransitionStartHelper.start(this@ImageViewerDialogFragment, transformer.getView(initKey), viewHolder)
                 background.changeToBackgroundColor(Config.VIEWER_BACKGROUND_COLOR)
 //                userCallback.onInit(viewHolder)
             }
 
             override fun onDrag(viewHolder: RecyclerView.ViewHolder, view: View, fraction: Float) {
+                Log.e("ImageAdapterListener","onDrag")
                 background.updateBackgroundColor(fraction, Config.VIEWER_BACKGROUND_COLOR, Color.TRANSPARENT)
 //                userCallback.onDrag(viewHolder, view, fraction)
             }
 
             override fun onRestore(viewHolder: RecyclerView.ViewHolder, view: View, fraction: Float) {
+                Log.e("ImageAdapterListener","onRestore")
                 background.changeToBackgroundColor(Config.VIEWER_BACKGROUND_COLOR)
 //                userCallback.onRestore(viewHolder, view, fraction)
             }
 
             override fun onRelease(viewHolder: RecyclerView.ViewHolder, view: View) {
+                Log.e("ImageAdapterListener","onRelease")
                 val startView = (view.getTag(R.id.viewer_adapter_item_key) as? Long?)?.let { transformer.getView(it) }
                 TransitionEndHelper.end(this@ImageViewerDialogFragment, startView, viewHolder)
                 background.changeToBackgroundColor(Color.TRANSPARENT)
 //                userCallback.onRelease(viewHolder, view)
+            }
+
+            override fun onClick(viewHolder: RecyclerView.ViewHolder, view: View) {
+                imageViewerActionViewModel.dismiss()
             }
         }
     }

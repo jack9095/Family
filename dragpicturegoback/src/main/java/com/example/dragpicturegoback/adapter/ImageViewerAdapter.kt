@@ -17,15 +17,16 @@ import com.example.dragpicturegoback.viewholders.UnknownViewHolder
  */
 class ImageViewerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var listener: ImageViewerAdapterListener? = null
-
+    private var key: Long = 0 // 就是适配器数据类中的 id （点击哪个item，传进来就是哪个 item 的 id）
     private var lists: MutableList<out ItemBean>? = null
 
     fun setListener(callback: ImageViewerAdapterListener?) {
         listener = callback
     }
 
-    fun setData(lists: MutableList<out ItemBean>?){
+    fun setData(lists: MutableList<out ItemBean>?,initKey: Long){
         this.lists = lists
+        this.key = initKey
         notifyDataSetChanged()
     }
 
@@ -44,10 +45,11 @@ class ImageViewerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             is SubsamplingViewHolder -> item?.let { holder.bind(it) }
         }
 
-//        if (item?.id == key) {
-//            listener?.onInit(holder)
-//            key = NO_ID
-//        }
+        // 初始化 adapter监听的回调方法
+        if (item?.id == key) {
+            listener?.onInit(holder)
+            key = NO_ID
+        }
     }
 
     override fun getItemCount(): Int = lists?.size ?: 0
@@ -65,6 +67,10 @@ class ImageViewerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun onRelease(viewHolder: RecyclerView.ViewHolder, view: View) {
             listener?.onRelease(viewHolder, view)
+        }
+
+        override fun onClick(viewHolder: RecyclerView.ViewHolder, view: View) {
+            listener?.onClick(viewHolder, view)
         }
 
         override fun onRestore(viewHolder: RecyclerView.ViewHolder, view: View, fraction: Float) {

@@ -12,4 +12,5 @@ interface ImageViewerAdapterListener {
     fun onDrag(viewHolder: RecyclerView.ViewHolder, view: View, fraction: Float)
     fun onRestore(viewHolder: RecyclerView.ViewHolder, view: View, fraction: Float)
     fun onRelease(viewHolder: RecyclerView.ViewHolder, view: View)
+    fun onClick(viewHolder: RecyclerView.ViewHolder, view: View)
 }

@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dragpicturegoback.ImageViewerAdapterListener
 import com.example.dragpicturegoback.R
 import com.example.dragpicturegoback.bean.ItemBean
-import com.example.dragpicturegoback.utils.Config
 import com.example.dragpicturegoback.utils.loadImage
 import com.example.dragpicturegoback.widgets.PhotoView2
 import kotlinx.android.extensions.LayoutContainer
@@ -25,6 +24,10 @@ class PhotoViewHolder(override val containerView: View, callback: ImageViewerAda
             }
             override fun onRelease(view: PhotoView2) = callback.onRelease(this@PhotoViewHolder, view)
         })
+
+        photoView.setOnClickListener{
+            callback.onClick(this@PhotoViewHolder,photoView)
+        }
     }
 
     fun bind(item: ItemBean) {

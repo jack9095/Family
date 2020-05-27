@@ -10,6 +10,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">-->
 
+<!--    android:background="@android:color/black"-->
+
         <!-- 背景颜色,黑色渐变 -->
     <com.example.dragpicturegoback.widgets.BackgroundView
         android:id="@+id/background"
@@ -22,12 +24,6 @@
         android:layout_height="match_parent"
         android:orientation="horizontal" />
 
-    <!-- 顶部的布局按钮，点击上一个，下一个 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/overlayView"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 <!--</FrameLayout>-->
 </com.example.dragpicturegoback.widgets.InterceptLayout>
 
