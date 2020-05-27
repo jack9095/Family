@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.example.dragpicturegoback.ImageViewerAdapterListener
+import com.example.dragpicturegoback.R
 import com.example.dragpicturegoback.bean.ItemBean
 import com.example.dragpicturegoback.utils.Config
 import com.example.dragpicturegoback.utils.saveBitmapFile
@@ -33,12 +34,12 @@ class SubsamplingViewHolder(override val containerView: View, callback: ImageVie
     }
 
     fun bind(item: ItemBean) {
-        subsamplingView.setTag(Config.ADAPTER_PHOTO_VIEW_DATA, item)
-        subsamplingView.setTag(Config.ADAPTER_PHOTO_VIEW_ID, item.id)
-        subsamplingView.setTag(Config.ADAPTER_PHOTO_VIEW, this)
+        subsamplingView.setTag(R.id.viewer_adapter_item_data, item)
+        subsamplingView.setTag(R.id.viewer_adapter_item_key, item.id)
+        subsamplingView.setTag(R.id.viewer_adapter_item_holder, this)
 
         GlobalScope.launch(Dispatchers.Main) {
-            withContext(Dispatchers.IO){
+            val fileMain = withContext(Dispatchers.IO){
                 val fileName = "data_subsampling_${item.id}"
                 val file = File(subsamplingView.context.cacheDir, fileName)
                 if (!file.exists()) {
@@ -50,8 +51,9 @@ class SubsamplingViewHolder(override val containerView: View, callback: ImageVie
                         e.message?.let(::toast)
                     }
                 }
-                subsamplingView.setImage(ImageSource.uri(Uri.fromFile(file)))
+                file
             }
+            subsamplingView.setImage(ImageSource.uri(Uri.fromFile(fileMain)))
         }
 
     }

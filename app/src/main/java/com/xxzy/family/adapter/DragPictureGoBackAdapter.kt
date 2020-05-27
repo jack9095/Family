@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.dragpicturegoback.Trans
 import com.xxzy.family.DragPictureGoBackActivity
 import com.xxzy.family.R
 import com.xxzy.family.model.MainBean
@@ -35,10 +36,22 @@ class DragPictureGoBackAdapter: RecyclerView.Adapter<DragPictureGoBackAdapter.My
 
         holder.itemView.tag = mainBean
 
-        holder.imageView.setOnClickListener(View.OnClickListener {
+        holder.imageView.setOnClickListener{
             Log.e("MainAdapter", "点击事件")
-            activity?.showViewer(mainBean)
-        })
+            activity?.showViewer(mainBean,position)
+        }
+    }
+
+    override fun onViewAttachedToWindow(holder: MyViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        val mainBean = holder.itemView.tag as MainBean
+        Trans.mapping.put(mainBean.id, holder.imageView)
+    }
+
+    override fun onViewDetachedFromWindow(holder: MyViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        val mainBean = holder.itemView.tag as MainBean
+        Trans.mapping.remove(mainBean.id)
     }
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

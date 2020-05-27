@@ -3,6 +3,7 @@ package com.xxzy.family
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.dragpicturegoback.ImageViewerDialogFragment
+import com.example.dragpicturegoback.Trans
 import com.example.dragpicturegoback.utils.Config
 import com.example.dragpicturegoback.utils.X
 import com.example.dragpicturegoback.utils.statusBarHeight
@@ -38,14 +39,21 @@ class DragPictureGoBackActivity : BaseViewModelActivity<DragPictureGoBackViewMod
         Config.TRANSITION_OFFSET_Y = statusBarHeight()
     }
 
-    fun showViewer(clickedData: MainBean) {
+    fun showViewer(clickedData: MainBean,index: Int) {
         Log.e("DragPictureActivity", "点击事件")
         //        imageViewerBuilder.setViewerFactory(new ImageViewerDialogFragment.Factory() {
 //            @NotNull @Override
 //            public ImageViewerDialogFragment build() {
-//                return new FullScreenImageViewerDialogFragment();
+//                return new FullScreenImageVieswerDialogFragment();
 //            }
 //        });
-        ImageViewerDialogFragment.Factory().build().show(supportFragmentManager)
+        val dialogFragment = ImageViewerDialogFragment.Factory().build()
+        dialogFragment.setData(getData(),clickedData.id,index)
+        dialogFragment.show(supportFragmentManager)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Trans.mapping.clear()
     }
 }

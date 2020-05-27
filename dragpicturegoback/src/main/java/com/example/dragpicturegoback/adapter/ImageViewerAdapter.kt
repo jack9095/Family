@@ -18,13 +18,13 @@ import com.example.dragpicturegoback.viewholders.UnknownViewHolder
 class ImageViewerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var listener: ImageViewerAdapterListener? = null
 
-    private var lists: MutableList<ItemBean>? = null
+    private var lists: MutableList<out ItemBean>? = null
 
     fun setListener(callback: ImageViewerAdapterListener?) {
         listener = callback
     }
 
-    fun setData(lists: MutableList<ItemBean>?){
+    fun setData(lists: MutableList<out ItemBean>?){
         this.lists = lists
         notifyDataSetChanged()
     }

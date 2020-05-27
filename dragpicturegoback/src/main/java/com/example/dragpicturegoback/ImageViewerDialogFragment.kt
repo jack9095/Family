@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -15,8 +16,11 @@ import com.example.dragpicturegoback.utils.Config
 import com.example.dragpicturegoback.utils.TransitionEndHelper
 import com.example.dragpicturegoback.utils.TransitionStartHelper
 import com.example.dragpicturegoback.utils.findViewWithKeyTag
+import com.example.dragpicturegoback.viewmodel.ImageViewerActionViewModel
 import com.example.dragpicturegoback.viewmodel.ImageViewerViewModel
+import com.example.dragpicturegoback.viewmodel.ViewerActions
 import kotlinx.android.synthetic.main.fragment_image_viewer_dialog.*
+import kotlin.math.max
 
 /**
  * 放大图片弹框
@@ -24,14 +28,16 @@ import kotlinx.android.synthetic.main.fragment_image_viewer_dialog.*
  * ViewPager2 的适配器和 RecyclerView 一模一样
  */
 open class ImageViewerDialogFragment : BaseDialogFragment() {
-//    private val imageViewerActionViewModel by lazy { ViewModelProvider(requireActivity()).get(ImageViewerActionViewModel::class.java) }
+    private val imageViewerActionViewModel by lazy { ViewModelProvider(requireActivity()).get(ImageViewerActionViewModel::class.java) }
     private val viewModel by lazy { ViewModelProvider(this).get(ImageViewerViewModel::class.java) }
 //    private val userCallback by lazy { requireViewerCallback() }
-//    private val initKey by lazy { requireInitKey() }
-//    private val transformer by lazy { requireTransformer() }
 
     // ViewPager2 的适配器和 RecyclerView 一模一样
     private val adapter by lazy { ImageViewerAdapter() }
+
+    lateinit var transformer: Transformer
+    var initKey: Long = 0 // 就是适配器数据类中的 id
+    var position: Int = 0 // 点击图片进入大图的角标，方便 ViewPager2 判断是哪张图片
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
@@ -44,6 +50,7 @@ open class ImageViewerDialogFragment : BaseDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        transformer = Transformer()
         // 设置 适配器中的 监听器
         adapter.setListener(adapterListener)
         (view_pager2.getChildAt(0) as? RecyclerView?)?.let {
@@ -57,26 +64,28 @@ open class ImageViewerDialogFragment : BaseDialogFragment() {
         // 设置屏幕外加载页面数量，也就是我们说的预加载数量，这里默认预加载一页
         view_pager2.offscreenPageLimit = 1
         view_pager2.adapter = adapter
-
-//        imageViewerActionViewModel.actionEvent.observe(viewLifecycleOwner, Observer(::handle))
+        view_pager2.setCurrentItem(position,false)
+        imageViewerActionViewModel.actionEvent.observe(viewLifecycleOwner, Observer(::handle))
     }
 
     // 给 adapter 设置数据
-    fun setData(data: MutableList<ItemBean>){
+    fun setData(data: MutableList<out ItemBean>,initKey: Long,position: Int){
         adapter.setData(data)
+        this.initKey = initKey
+        this.position = position
     }
 
-//    private fun handle(action: Pair<String, Any?>?) {
-//        when (action?.first) {
-//            ViewerActions.SET_CURRENT_ITEM -> view_pager2.currentItem = max(action.second as Int, 0)
-//            ViewerActions.DISMISS -> onBackPressed()
-//        }
-//    }
+    private fun handle(action: Pair<String, Any?>?) {
+        when (action?.first) {
+            ViewerActions.SET_CURRENT_ITEM -> view_pager2.currentItem = max(action.second as Int, 0)
+            ViewerActions.DISMISS -> onBackPressed()
+        }
+    }
 
     private val adapterListener by lazy {
         object : ImageViewerAdapterListener {
             override fun onInit(viewHolder: RecyclerView.ViewHolder) {
-//                TransitionStartHelper.start(this@ImageViewerDialogFragment, transformer.getView(initKey), viewHolder)
+                TransitionStartHelper.start(this@ImageViewerDialogFragment, transformer.getView(initKey), viewHolder)
                 background.changeToBackgroundColor(Config.VIEWER_BACKGROUND_COLOR)
 //                userCallback.onInit(viewHolder)
             }
@@ -92,8 +101,8 @@ open class ImageViewerDialogFragment : BaseDialogFragment() {
             }
 
             override fun onRelease(viewHolder: RecyclerView.ViewHolder, view: View) {
-//                val startView = (view.getTag(Config.ADAPTER_PHOTO_VIEW_DATA) as? Long?)?.let { transformer.getView(it) }
-//                TransitionEndHelper.end(this@ImageViewerDialogFragment, startView, viewHolder)
+                val startView = (view.getTag(R.id.viewer_adapter_item_key) as? Long?)?.let { transformer.getView(it) }
+                TransitionEndHelper.end(this@ImageViewerDialogFragment, startView, viewHolder)
                 background.changeToBackgroundColor(Color.TRANSPARENT)
 //                userCallback.onRelease(viewHolder, view)
             }
@@ -131,12 +140,12 @@ open class ImageViewerDialogFragment : BaseDialogFragment() {
         Log.i("ImageViewerDFragment","onBackPressed ${view_pager2.currentItem}")
 
         val currentKey = adapter.getItemId(view_pager2.currentItem)
-        view_pager2.findViewWithKeyTag(Config.ADAPTER_PHOTO_VIEW_ID, currentKey)?.let { endView ->
-//            val startView = transformer.getView(currentKey)
+        view_pager2.findViewWithKeyTag(R.id.viewer_adapter_item_key, currentKey)?.let { endView ->
+            val startView = transformer.getView(currentKey)
             background.changeToBackgroundColor(Color.TRANSPARENT)
 
-            (endView.getTag(Config.ADAPTER_PHOTO_VIEW) as? RecyclerView.ViewHolder?)?.let {
-//                TransitionEndHelper.end(this, startView, it)
+            (endView.getTag(R.id.viewer_adapter_item_holder) as? RecyclerView.ViewHolder?)?.let {
+                TransitionEndHelper.end(this, startView, it)
 //                userCallback.onRelease(it, endView)
             }
         }

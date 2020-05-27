@@ -3,6 +3,7 @@ package com.example.dragpicturegoback.viewholders
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dragpicturegoback.ImageViewerAdapterListener
+import com.example.dragpicturegoback.R
 import com.example.dragpicturegoback.bean.ItemBean
 import com.example.dragpicturegoback.utils.Config
 import com.example.dragpicturegoback.utils.loadImage
@@ -27,9 +28,9 @@ class PhotoViewHolder(override val containerView: View, callback: ImageViewerAda
     }
 
     fun bind(item: ItemBean) {
-        photoView.setTag(Config.ADAPTER_PHOTO_VIEW_DATA, item)
-        photoView.setTag(Config.ADAPTER_PHOTO_VIEW_ID, item.id)
-        photoView.setTag(Config.ADAPTER_PHOTO_VIEW, this)
+        photoView.setTag(R.id.viewer_adapter_item_data, item)
+        photoView.setTag(R.id.viewer_adapter_item_key, item.id)
+        photoView.setTag(R.id.viewer_adapter_item_holder, this)
         loadImage(item.url,photoView)
     }
 }

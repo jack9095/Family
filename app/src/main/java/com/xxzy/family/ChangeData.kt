@@ -22,7 +22,7 @@ fun getData(): MutableList<MainBean> {
     for (str in listOf(*array)) {
         mainBean = MainBean()
         mainBean.url = str
-        mainBean.type = 1
+        mainBean.type = 0
         mainBean.id = count++
         lists.add(mainBean)
     }

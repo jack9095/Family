@@ -15,9 +15,4 @@ object Config {
     var DISMISS_FRACTION: Float = 0.12f
 
     var TRANSITION_OFFSET_Y = 0
-
-    // adapter 中的 tag 标记 Key
-    const val ADAPTER_PHOTO_VIEW_DATA = 0
-    const val ADAPTER_PHOTO_VIEW_ID = 1
-    const val ADAPTER_PHOTO_VIEW = 2
 }

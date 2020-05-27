@@ -25,7 +25,7 @@
     <!-- 顶部的布局按钮，点击上一个，下一个 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/overlayView"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 <!--</FrameLayout>-->

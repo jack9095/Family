@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.*
+import com.example.dragpicturegoback.R
 import com.example.dragpicturegoback.bean.ItemBean
 import com.example.dragpicturegoback.viewholders.PhotoViewHolder
 import com.example.dragpicturegoback.viewholders.SubsamplingViewHolder
@@ -124,7 +125,7 @@ object TransitionStartHelper {
     private fun afterTransition(holder: RecyclerView.ViewHolder) {
         when (holder) {
             is PhotoViewHolder -> {
-                val itemData = holder.photoView.getTag(Config.ADAPTER_PHOTO_VIEW_DATA) as ItemBean
+                val itemData = holder.photoView.getTag(R.id.viewer_adapter_item_data) as ItemBean
                 loadImage(itemData.url,holder.photoView)
             }
         }
