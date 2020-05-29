@@ -13,6 +13,9 @@ import kotlin.math.min
 
 /**
  * 也是图片放大缩小（特别适合很大的图片加载，避免 OOM 的不二选择）
+ *
+ * Kotlin中@JvmOverloads 注解
+ * https://www.jianshu.com/p/72d1959a7c56
  */
 class SubsamplingScaleImageView2 @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
     : SubsamplingScaleImageView(context, attrs) {

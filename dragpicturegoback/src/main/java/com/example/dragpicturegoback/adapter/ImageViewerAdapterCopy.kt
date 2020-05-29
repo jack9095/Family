@@ -65,6 +65,10 @@ class ImageViewerAdapterCopy(initKey: Long) : PagedListAdapter<ItemBean, Recycle
             listener?.onRelease(viewHolder, view)
         }
 
+        override fun onClick(viewHolder: RecyclerView.ViewHolder, view: View) {
+            listener?.onClick(viewHolder, view)
+        }
+
         override fun onRestore(viewHolder: RecyclerView.ViewHolder, view: View, fraction: Float) {
             listener?.onRestore(viewHolder, view, fraction)
         }
