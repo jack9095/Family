@@ -9,6 +9,7 @@ import com.example.dragpicturegoback.utils.X
 import com.example.dragpicturegoback.utils.statusBarHeight
 import com.mouble.baselibrary.base.BaseViewModelActivity
 import com.xxzy.family.adapter.DragPictureGoBackAdapter
+import com.xxzy.family.data.getData
 import com.xxzy.family.model.MainBean
 import com.xxzy.family.viewmodel.DragPictureGoBackViewModel
 import kotlinx.android.synthetic.main.activity_drag_picture_goback.*

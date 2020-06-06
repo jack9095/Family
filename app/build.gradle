@@ -37,8 +37,8 @@ dependencies {
     implementation project(path: ':dragpicturegoback')
 }
 
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
-}
+//kotlin {
+//    experimental {
+//        coroutines 'enable'
+//    }
+//}

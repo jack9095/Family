@@ -56,8 +56,8 @@ dependencies {
 }
 
 // 协程
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
-}
+//kotlin {
+//    experimental {
+//        coroutines 'enable'
+//    }
+//}

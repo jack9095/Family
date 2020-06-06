@@ -1,8 +1,7 @@
-package com.xxzy.family
+package com.xxzy.family.data
 
 import android.os.Handler
 import android.os.Looper
-import com.example.dragpicturegoback.adapter.ItemType
 import com.xxzy.family.model.MainBean
 import java.util.*
 
