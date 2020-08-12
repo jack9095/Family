@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimeActivity">
+
+    <TextView
+        android:id="@+id/aaa"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="#0000ff"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tvFlashTime"
+        />
+
+<!--    app:time_background="#1aff9808"-->
+    <com.xxzy.family.widget.TimeTextView
+        android:id="@+id/tvFlashTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        app:layout_constraintLeft_toRightOf="@id/aaa"
+        app:layout_constraintRight_toLeftOf="@id/bbb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:sep_width="10dp"
+        app:time_background="#000000"
+        app:time_color="#ff9808"
+        app:colon_color="#ff9808"
+        app:radius="2dp"
+        app:time_size="12sp"
+        app:background_height="16dp"
+        app:background_width="16dp"
+        />
+
+    <TextView
+        android:id="@+id/bbb"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="#ff00ff"
+        app:layout_constraintLeft_toRightOf="@id/tvFlashTime"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

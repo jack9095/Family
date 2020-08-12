@@ -1,5 +1,6 @@
 package com.xxzy.family.data
 
+import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import com.xxzy.family.model.MainBean
@@ -56,3 +57,17 @@ fun queryAfter(id: Long, callback: (List<MainBean>) -> Unit) {
         callback(result)
     }, 100)
 }
+
+
+//fun setData(): MutableList<PieData>{
+//
+//    val lists = mutableListOf<PieData>()
+//    lists.add(PieData(Color.parseColor("#000000"),0,90))
+//    lists.add(PieData(Color.parseColor("#ff0000"),90,200))
+//    lists.add(PieData(Color.parseColor("#00ff00"),200,290))
+//    return lists
+//}
+
+
+
+
