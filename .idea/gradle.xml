@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baselibrary" />
             <option value="$PROJECT_DIR$/dragpicturegoback" />
+            <option value="$PROJECT_DIR$/stacklayoutmanager" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
