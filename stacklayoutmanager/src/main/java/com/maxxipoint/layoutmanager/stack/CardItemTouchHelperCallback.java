@@ -62,7 +62,6 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
         // 移除 onTouchListener,否则触摸滑动会乱了
         viewHolder.itemView.setOnTouchListener(null);
         int layoutPosition = viewHolder.getLayoutPosition();
-//        T t = dataList.get(layoutPosition);
         T remove = dataList.remove(layoutPosition);
         dataList.add(remove);
         adapter.notifyDataSetChanged();
@@ -102,8 +101,8 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
                 for (int position = 1; position < childCount - 1; position++) {
                     int index = childCount - position - 1;
                     View view = recyclerView.getChildAt(position);
-                    view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
-                    view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
+                    view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE_X + Math.abs(ratio) * CardConfig.DEFAULT_SCALE_X);
+                    view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE_Y + Math.abs(ratio) * CardConfig.DEFAULT_SCALE_Y);
 //                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                     view.setTranslationX((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 }
@@ -112,8 +111,8 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
                 for (int position = 0; position < childCount - 1; position++) {
                     int index = childCount - position - 1;
                     View view = recyclerView.getChildAt(position);
-                    view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
-                    view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
+                    view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE_X + Math.abs(ratio) * CardConfig.DEFAULT_SCALE_X);
+                    view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE_Y + Math.abs(ratio) * CardConfig.DEFAULT_SCALE_Y);
 //                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                     view.setTranslationX((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 }

@@ -6,11 +6,15 @@ public final class CardConfig {
     /**
      * 显示可见的卡片数量
      */
-    public static final int DEFAULT_SHOW_ITEM = 3;
+    public static final int DEFAULT_SHOW_ITEM = 2;
     /**
-     * 默认缩放的比例
+     * 默认缩放的比例 Y 轴
      */
-    public static final float DEFAULT_SCALE = 0.1f;
+    public static final float DEFAULT_SCALE_Y = 0.1f;
+    /**
+     * 默认缩放的比例 X 轴
+     */
+    public static final float DEFAULT_SCALE_X = 0.03f;
     /**
      * 卡片Y轴偏移量时按照14等分计算
      */
