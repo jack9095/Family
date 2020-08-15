@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baselibrary" />
+            <option value="$PROJECT_DIR$/cardscrollpage" />
+            <option value="$PROJECT_DIR$/customlayoutmanager" />
             <option value="$PROJECT_DIR$/dragpicturegoback" />
             <option value="$PROJECT_DIR$/stacklayoutmanager" />
           </set>
