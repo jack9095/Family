@@ -33,9 +33,9 @@ public final class ItemConfig {
      */
     public static final float DEFAULT_SCALE = 0.1f;
     /**
-     * 卡片Y轴偏移量时按照14等分计算
+     * 卡片（Y 或 X）轴偏移量时按照14等分计算 这个是堆叠两侧现实的宽度， 越小越宽，越大越窄
      */
-    public static final int DEFAULT_TRANSLATE_Y = 14;
+    public static final int DEFAULT_TRANSLATE = 12;
     /**
      * 卡片滑动时默认倾斜的角度
      */

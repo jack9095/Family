@@ -1,27 +1,55 @@
 package com.maxxipoint.layoutmanager.slide;
 
-import android.annotation.SuppressLint;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+import android.annotation.*;
+import android.util.Log;
+import android.view.*;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.MotionEventCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-
-public class SlideLayoutManager extends RecyclerView.LayoutManager {
+public class SlideLayoutManager<T> extends RecyclerView.LayoutManager {
 
     private RecyclerView mRecyclerView;
     private ItemTouchHelper mItemTouchHelper;
+    private OnSlideListener<T> mListener;
 
-    public SlideLayoutManager(@NonNull RecyclerView recyclerView, @NonNull ItemTouchHelper itemTouchHelper) {
+    public SlideLayoutManager(ItemTouchHelperCallback mItemTouchHelperCallback, @NonNull RecyclerView recyclerView, @NonNull ItemTouchHelper itemTouchHelper) {
         this.mRecyclerView = checkIsNull(recyclerView);
         this.mItemTouchHelper = checkIsNull(itemTouchHelper);
+        mItemTouchHelperCallback.setOnSlideListener(new OnSlideListener() {
+            @Override
+            public void onSliding(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
+                if (direction == ItemConfig.SLIDING_LEFT) {
+                } else if (direction == ItemConfig.SLIDING_RIGHT) {
+                }
+            }
+
+            @Override
+            public void onSlided(RecyclerView.ViewHolder viewHolder, Object o, int direction) {
+                if (direction == ItemConfig.SLIDED_LEFT) {
+
+                } else if (direction == ItemConfig.SLIDED_RIGHT) {
+
+                }
+                if (currentPosition >= getItemCount() - 1) {
+                    currentPosition = 0;
+                } else {
+                    currentPosition++;
+                }
+            }
+
+            @Override
+            public void onClear() {
+
+            }
+
+            @Override
+            public void onItemClick(int position) {
+
+            }
+        });
     }
 
     private <T> T checkIsNull(T t) {
@@ -36,8 +64,13 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
         return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
+    public void setOnSlideListener(OnSlideListener<T> mListener) {
+        this.mListener = mListener;
+    }
+
     @Override
     public void onLayoutChildren(final RecyclerView.Recycler recycler, RecyclerView.State state) {
+//        super.onLayoutChildren(recycler, state);
         detachAndScrapAttachedViews(recycler);
         int itemCount = getItemCount();
         if (itemCount > ItemConfig.DEFAULT_SHOW_ITEM) {
@@ -45,6 +78,7 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
                 final View view = recycler.getViewForPosition(position);
                 addView(view);
                 measureChildWithMargins(view, 0, 0);
+                // 实际宽度 = 宽度 - 分割线的宽度
                 int widthSpace = getWidth() - getDecoratedMeasuredWidth(view);
                 int heightSpace = getHeight() - getDecoratedMeasuredHeight(view);
                 layoutDecoratedWithMargins(view, widthSpace / 2, heightSpace / 5,
@@ -54,13 +88,13 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
                 if (position == ItemConfig.DEFAULT_SHOW_ITEM) {
                     view.setScaleX(1 - (position - 1) * ItemConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - (position - 1) * ItemConfig.DEFAULT_SCALE);
-                    view.setTranslationX((position - 1) * view.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE_Y);
-//                    view.setTranslationY((position - 1) * view.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE_Y);
+                    view.setTranslationX((position - 1) * view.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE);
+//                    view.setTranslationY((position - 1) * view.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE);
                 } else if (position > 0) {
                     view.setScaleX(1 - position * ItemConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - position * ItemConfig.DEFAULT_SCALE);
-//                    view.setTranslationY(position * view.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE_Y);
-                    view.setTranslationX(position * view.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE_Y);
+//                    view.setTranslationY(position * view.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE);
+                    view.setTranslationX(position * view.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE);
                 } else {
                     view.setOnTouchListener(mOnTouchListener);
                 }
@@ -79,8 +113,8 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
                 if (position > 0) {
                     view.setScaleX(1 - position * ItemConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - position * ItemConfig.DEFAULT_SCALE);
-//                    view.setTranslationY(position * view.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE_Y);
-                    view.setTranslationX(position * view.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE_Y);
+//                    view.setTranslationY(position * view.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE);
+                    view.setTranslationX(position * view.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE);
                 } else {
                     view.setOnTouchListener(mOnTouchListener);
                 }
@@ -100,11 +134,16 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
         }
     };
 
+    int currentPosition = 0;
     private GestureDetector gestureDetector = new GestureDetector(new GestureDetector.SimpleOnGestureListener() {
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            Toast.makeText(mRecyclerView.getContext(),"点击事件",Toast.LENGTH_SHORT).show();
+            if (mListener != null) {
+                mListener.onItemClick(currentPosition);
+            }
+//            Toast.makeText(mRecyclerView.getContext(),"点击事件" + childViewHolder.getLayoutPosition(),Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mRecyclerView.getContext(), "点击事件" + currentPosition, Toast.LENGTH_SHORT).show();
             return true;
         }
 

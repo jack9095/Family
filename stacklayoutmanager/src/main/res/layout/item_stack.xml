@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.maxxipoint.layoutmanager.widget.TouchRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recycler_view"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="157dp"/>
+    android:layout_height="157dp"
+    android:background="#fff6f7f9">
 
+    <com.maxxipoint.layoutmanager.use.tool.TouchRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:layout_gravity="center" />
+
+</FrameLayout>

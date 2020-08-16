@@ -1,8 +1,10 @@
 package com.maxxipoint.layoutmanager.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -12,29 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.maxxipoint.layoutmanager.R;
 import com.maxxipoint.layoutmanager.bean.SlideBean;
 import com.maxxipoint.layoutmanager.slide.ItemTouchHelperCallback;
+import com.maxxipoint.layoutmanager.slide.OnSlideListener;
 import com.maxxipoint.layoutmanager.slide.SlideLayoutManager;
-import com.maxxipoint.layoutmanager.widget.TouchRecyclerView;
+import com.maxxipoint.layoutmanager.use.tool.TouchRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SlideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SlideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements OnSlideListener {
 
     private  List<SlideBean> mList = new ArrayList<>();
 
     public SlideAdapter() {
-        int[] icons = {R.mipmap.header_icon_1, R.mipmap.header_icon_2, R.mipmap.header_icon_3,
-                R.mipmap.header_icon_4, R.mipmap.header_icon_1, R.mipmap.header_icon_2};
-        String[] titles = {"Acknowledging", "Belief", "Confidence", "Dreaming", "Happiness", "Confidence"};
-        String[] says = {
-                "Do one thing at a time, and do well.",
-                "Keep on going never give up.",
-                "Whatever is worth doing is worth doing well.",
-                "I can because i think i can.",
-                "Jack of all trades and master of none.",
-                "Keep on going never give up.",
-                "Whatever is worth doing is worth doing well.",
-        };
         int[] bgs = {
                 R.mipmap.img_slide_1,
                 R.mipmap.img_slide_2,
@@ -45,7 +36,7 @@ public class SlideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         };
 
         for (int i = 0; i < 6; i++) {
-            mList.add(new SlideBean(bgs[i],titles[i],icons[i],says[i]));
+            mList.add(new SlideBean(bgs[i]));
         }
     }
 
@@ -68,9 +59,10 @@ public class SlideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             MyViewHolder holder = (MyViewHolder) mHolder;
             holder.recyclerView.setAdapter(new SlideChilAdapter(mList));
 
-            ItemTouchHelperCallback mItemTouchHelperCallback = new ItemTouchHelperCallback(holder.recyclerView.getAdapter(), mList);
+            ItemTouchHelperCallback<SlideBean> mItemTouchHelperCallback = new ItemTouchHelperCallback(holder.recyclerView.getAdapter(), mList);
             ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(mItemTouchHelperCallback);
-            SlideLayoutManager mSlideLayoutManager = new SlideLayoutManager(holder.recyclerView, mItemTouchHelper);
+            SlideLayoutManager<SlideBean> mSlideLayoutManager = new SlideLayoutManager(mItemTouchHelperCallback,holder.recyclerView, mItemTouchHelper);
+            mSlideLayoutManager.setOnSlideListener(this);
             mItemTouchHelper.attachToRecyclerView(holder.recyclerView);
             holder.recyclerView.setLayoutManager(mSlideLayoutManager);
         }
@@ -88,6 +80,26 @@ public class SlideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public int getItemCount() {
         return 20;
+    }
+
+    @Override
+    public void onSliding(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
+
+    }
+
+    @Override
+    public void onSlided(RecyclerView.ViewHolder viewHolder, Object o, int direction) {
+
+    }
+
+    @Override
+    public void onClear() {
+
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Log.e("SlideAdapter", "position = "+ position);
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

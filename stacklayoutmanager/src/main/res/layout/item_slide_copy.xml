@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="157dp">
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="329dp"-->
+<!--        android:layout_height="125dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginEnd="4dp"-->
+<!--        app:cardCornerRadius="8dp"-->
+<!--        app:elevation="10dp"-->
+<!--        tools:ignore="UnusedAttribute">-->
+
+    <com.maxxipoint.layoutmanager.widget.ShadowLayout
+        android:id="@+id/mShadowLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:hl_cornerRadius="8dp"
+        android:layout_marginEnd="4dp"
+        app:hl_shadowColor="#19000000"
+        app:hl_shadowLimit="2dp"
+        app:hl_shadowOffsetX="2dp"
+        app:hl_shadowOffsetY="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="329dp"
+            android:layout_height="125dp">
+
+            <ImageView
+                android:id="@+id/img_head"
+                android:layout_width="101dp"
+                android:layout_height="101dp"
+                android:layout_marginStart="12dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="浅易野区蹦迪"
+                android:textColor="#111111"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                app:layout_constraintLeft_toRightOf="@id/img_head"
+                app:layout_constraintTop_toTopOf="@id/img_head"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/shape_state"
+                app:layout_constraintLeft_toRightOf="@id/tv_title"
+                app:layout_constraintTop_toTopOf="@id/img_head"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:id="@+id/iv_title_icon"
+                    android:layout_width="8dp"
+                    android:layout_height="9dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@mipmap/header_icon_1"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_title_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:text="接单中"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iv_title_icon"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:text="我和他玩过"
+                android:textColor="#666666"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                app:layout_constraintLeft_toRightOf="@id/img_head"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/img_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/header_icon_1"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintLeft_toRightOf="@id/tv_content"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:background="@drawable/shape_tag"
+                android:text="连续给出3次好评"
+                android:textColor="#FF7340"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toRightOf="@id/img_head"
+                app:layout_constraintTop_toBottomOf="@id/tv_content"
+                tools:ignore="MissingConstraints" />
+
+
+            <TextView
+                android:id="@+id/tv_btm_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="常和他一起玩"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/img_head"
+                app:layout_constraintLeft_toRightOf="@id/img_head"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.maxxipoint.layoutmanager.widget.ShadowLayout>
+<!--    </androidx.cardview.widget.CardView>-->
+</FrameLayout>

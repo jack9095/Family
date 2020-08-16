@@ -14,4 +14,6 @@ public interface OnSlideListener<T> {
 
     void onClear();
 
+    void onItemClick(int position);
+
 }

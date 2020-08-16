@@ -1,18 +1,10 @@
 package com.maxxipoint.layoutmanager.adapter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import android.view.*;
+import android.widget.*;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.maxxipoint.layoutmanager.R;
 import com.maxxipoint.layoutmanager.bean.SlideBean;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 public class SlideChilAdapter extends RecyclerView.Adapter<SlideChilAdapter.ViewHolder> {
@@ -51,7 +43,7 @@ public class SlideChilAdapter extends RecyclerView.Adapter<SlideChilAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imgBg = itemView.findViewById(R.id.img_bg);
+            imgBg = itemView.findViewById(R.id.img_head);
 //            userIcon = itemView.findViewById(R.id.img_user);
 //            tvTitle = itemView.findViewById(R.id.tv_title);
 //            userSay = itemView.findViewById(R.id.tv_user_say);

@@ -8,11 +8,8 @@ public class SlideBean {
     private int mUserIcon;
     private String mUserSay;
 
-    public SlideBean(int mItemBg, String mTitle, int mUserIcon, String mUserSay) {
+    public SlideBean(int mItemBg) {
         this.mItemBg = mItemBg;
-        this.mTitle = mTitle;
-        this.mUserIcon = mUserIcon;
-        this.mUserSay = mUserSay;
     }
 
     public int getItemBg() {

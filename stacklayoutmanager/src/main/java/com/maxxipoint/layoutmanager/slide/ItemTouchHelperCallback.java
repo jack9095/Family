@@ -97,8 +97,8 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
                     View view = recyclerView.getChildAt(position);
                     view.setScaleX(1 - index * ItemConfig.DEFAULT_SCALE + Math.abs(ratio) * ItemConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - index * ItemConfig.DEFAULT_SCALE + Math.abs(ratio) * ItemConfig.DEFAULT_SCALE);
-//                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE_Y);
-                    view.setTranslationX((index - Math.abs(ratio)) * itemView.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE_Y);
+//                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE);
+                    view.setTranslationX((index - Math.abs(ratio)) * itemView.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE);
                 }
             } else {
                 for (int position = 0; position < childCount - 1; position++) {
@@ -106,8 +106,8 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
                     View view = recyclerView.getChildAt(position);
                     view.setScaleX(1 - index * ItemConfig.DEFAULT_SCALE + Math.abs(ratio) * ItemConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - index * ItemConfig.DEFAULT_SCALE + Math.abs(ratio) * ItemConfig.DEFAULT_SCALE);
-//                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE_Y);
-                    view.setTranslationX((index - Math.abs(ratio)) * itemView.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE_Y);
+//                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / ItemConfig.DEFAULT_TRANSLATE);
+                    view.setTranslationX((index - Math.abs(ratio)) * itemView.getMeasuredWidth() / ItemConfig.DEFAULT_TRANSLATE);
                 }
             }
             if (mListener != null) {
