@@ -1,5 +1,6 @@
 package com.maxxipoint.layoutmanager.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,7 +68,7 @@ class StackAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(), OnStackList
     override fun onSlided(viewHolder: RecyclerView.ViewHolder?, direction: Int) {}
 
     override fun onItemClick(position: Int) {
-
+        Log.e("SlideAdapter", "position = $position")
     }
 
     internal class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

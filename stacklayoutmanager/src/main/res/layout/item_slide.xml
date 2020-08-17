@@ -13,6 +13,7 @@
     app:hl_shadowOffsetY="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingEnd="12dp"
         android:layout_width="329dp"
         android:layout_height="125dp">
 
@@ -30,28 +31,35 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="浅易野区蹦迪"
+            android:text="从百草园到三味书屋"
             android:textColor="#111111"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/img_head"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintStart_toEndOf="@+id/img_head"
+            app:layout_constraintEnd_toStartOf="@+id/cl"
             app:layout_constraintTop_toTopOf="@id/img_head"
             tools:ignore="MissingConstraints" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/cl"
+            android:layout_width="54dp"
             android:layout_height="18dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/shape_state"
-            app:layout_constraintLeft_toRightOf="@id/tv_title"
-            app:layout_constraintTop_toTopOf="@id/img_head"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_title"
             tools:ignore="MissingConstraints">
 
             <ImageView
@@ -75,7 +83,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="接单中"
+                android:text="读书中"
                 android:textColor="#ffffff"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +102,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="我和他玩过"
+            android:text="碧绿的树叶"
             android:textColor="#666666"
             android:textSize="12sp"
             app:layout_constraintLeft_toRightOf="@id/img_head"
@@ -114,6 +122,34 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:ignore="MissingConstraints" />
 
+        <ImageView
+            android:id="@+id/img_content_one"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:contentDescription="@string/app_name"
+            android:visibility="visible"
+            android:src="@mipmap/header_icon_1"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toRightOf="@id/img_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:ignore="MissingConstraints,PrivateResource" />
+
+        <ImageView
+            android:id="@+id/img_content_two"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:visibility="visible"
+            android:src="@mipmap/header_icon_1"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toRightOf="@id/img_content_one"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:ignore="MissingConstraints,PrivateResource" />
+
         <TextView
             android:id="@+id/tv_tag"
             android:layout_width="wrap_content"
@@ -124,7 +160,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="连续给出3次好评"
+            android:text="连续获得3次好评"
             android:textColor="#FF7340"
             android:textSize="11sp"
             app:layout_constraintLeft_toRightOf="@id/img_head"
@@ -141,12 +177,40 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="常和他一起玩"
+            android:text="常和他一起学习"
             android:textColor="#999999"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/img_head"
             app:layout_constraintLeft_toRightOf="@id/img_head"
             tools:ignore="MissingConstraints" />
+
+        <!--<TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/age_gender"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_cover"
+            tools:text="从百草园到三味书屋" />
+
+        <ImageView
+            android:id="@+id/age_gender"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_6"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_nickname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_nickname"
+            app:layout_constraintTop_toTopOf="@+id/tv_nickname" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.maxxipoint.layoutmanager.use.tool.ShadowLayout>
