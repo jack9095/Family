@@ -14,7 +14,7 @@ import com.maxxipoint.layoutmanager.use.stack.OnStackListener
 import com.maxxipoint.layoutmanager.use.stack.StackLayoutManager
 import com.maxxipoint.layoutmanager.use.tool.TouchRecyclerView
 
-class StackAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(), OnStackListener {
+class VpAdapterStackAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(), OnStackListener<SlideBean> {
 
     private val mList = mutableListOf<SlideBean?>()
 
@@ -28,8 +28,17 @@ class StackAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(), OnStackList
             R.mipmap.img_slide_6
         )
 
+        val titles = mutableListOf<String>(
+            "标题1",
+            "标题2",
+            "标题3",
+            "标题4",
+            "标题5",
+            "标题6"
+        )
+
         for (i in 0..5) {
-            mList.add(SlideBean(bgs[i]))
+            mList.add(SlideBean(bgs[i],titles[i]))
         }
     }
 
@@ -49,7 +58,7 @@ class StackAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(), OnStackList
         if (holder is MyViewHolder) {
             holder.recyclerView.adapter = SlideChilAdapter(mList)
             holder.recyclerView.adapter?.let {
-                val callback = ItemTouchHelperCallback<SlideBean?>(it, mList)
+                val callback = ItemTouchHelperCallback(it, mList)
                 val mItemTouchHelper = ItemTouchHelper(callback)
                 val mSlideLayoutManager = StackLayoutManager(callback, holder.recyclerView, mItemTouchHelper)
                 mSlideLayoutManager.setOnStackListener(this)
@@ -65,7 +74,9 @@ class StackAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>(), OnStackList
 
     override fun onSliding(viewHolder: RecyclerView.ViewHolder?, ratio: Float, direction: Int) {}
 
-    override fun onSlided(viewHolder: RecyclerView.ViewHolder?, direction: Int) {}
+    override fun onSlided(viewHolder: RecyclerView.ViewHolder?, t: SlideBean?, direction: Int) {
+        Log.e("SlideAdapter", "标题 = ${t?.title}")
+    }
 
     override fun onItemClick(position: Int) {
         Log.e("SlideAdapter", "position = $position")

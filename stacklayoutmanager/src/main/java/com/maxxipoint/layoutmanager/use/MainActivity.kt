@@ -5,7 +5,8 @@ import android.os.Bundle
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxxipoint.layoutmanager.R
-import com.maxxipoint.layoutmanager.adapter.StackAdapter
+//import com.maxxipoint.layoutmanager.adapter.StackAdapter
+import com.maxxipoint.layoutmanager.adapter.VpAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
@@ -15,6 +16,7 @@ class MainActivity : Activity() {
 //        A("33333")
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = StackAdapter()
+//        recyclerView.adapter = StackAdapter()
+        recyclerView.adapter = VpAdapter()
     }
 }

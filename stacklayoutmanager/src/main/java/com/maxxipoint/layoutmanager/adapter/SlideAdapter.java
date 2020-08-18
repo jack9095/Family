@@ -35,8 +35,17 @@ public class SlideAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 R.mipmap.img_slide_6
         };
 
+        String[] titles = {
+                "标题1",
+                "标题2",
+                "标题3",
+                "标题4",
+                "标题5",
+                "标题6"
+        };
+
         for (int i = 0; i < 6; i++) {
-            mList.add(new SlideBean(bgs[i]));
+            mList.add(new SlideBean(bgs[i],titles[i]));
         }
     }
 

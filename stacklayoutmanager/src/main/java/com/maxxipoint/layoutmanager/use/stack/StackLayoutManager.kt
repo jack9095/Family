@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 @SuppressLint("ClickableViewAccessibility")
-class StackLayoutManager() : RecyclerView.LayoutManager() {
+class StackLayoutManager<T>() : RecyclerView.LayoutManager() {
 
     private var mRecyclerView: RecyclerView? = null
     private var mItemTouchHelper: ItemTouchHelper? = null
-    private var mListener: OnStackListener? = null
+    private var mListener: OnStackListener<T>? = null
     private var position = 0
     private var viewHolder: RecyclerView.ViewHolder? = null
     private val onTouchListener by lazy {
@@ -44,14 +44,14 @@ class StackLayoutManager() : RecyclerView.LayoutManager() {
     }
 
     constructor(
-        callback: ItemTouchHelperCallback<*>,
+        callback: ItemTouchHelperCallback<T>,
         rv: RecyclerView,
         ith: ItemTouchHelper
     ) : this() {
         this.mRecyclerView = rv
         this.mItemTouchHelper = ith
 
-        callback.setOnStackListener(object : OnStackListener {
+        callback.setOnStackListener(object : OnStackListener<T> {
             override fun onSliding(
                 viewHolder: RecyclerView.ViewHolder?,
                 ratio: Float,
@@ -59,7 +59,8 @@ class StackLayoutManager() : RecyclerView.LayoutManager() {
             ) {
             }
 
-            override fun onSlided(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
+            override fun onSlided(viewHolder: RecyclerView.ViewHolder?, t: T?, direction: Int) {
+                mListener?.onSlided(viewHolder,t,direction)
                 if (position >= itemCount - 1) position = 0 else position++
             }
 
@@ -67,7 +68,7 @@ class StackLayoutManager() : RecyclerView.LayoutManager() {
         })
     }
 
-    fun setOnStackListener(mListener: OnStackListener?) {
+    fun setOnStackListener(mListener: OnStackListener<T>) {
         this.mListener = mListener
     }
 

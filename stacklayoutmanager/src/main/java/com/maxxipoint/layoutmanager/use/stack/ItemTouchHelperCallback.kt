@@ -8,7 +8,7 @@ class ItemTouchHelperCallback<T>() : ItemTouchHelper.Callback() {
 
     private var adapter: RecyclerView.Adapter<*>? = null
     private var dataList: MutableList<T?>? = null
-    private var mListener: OnStackListener? = null
+    private var mListener: OnStackListener<T>? = null
 
     constructor(
         adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
@@ -18,7 +18,7 @@ class ItemTouchHelperCallback<T>() : ItemTouchHelper.Callback() {
         this.dataList = dataList
     }
 
-    fun setOnStackListener(mListener: OnStackListener?) {
+    fun setOnStackListener(mListener: OnStackListener<T>?) {
         this.mListener = mListener
     }
 
@@ -28,7 +28,7 @@ class ItemTouchHelperCallback<T>() : ItemTouchHelper.Callback() {
     ): Int {
         val dragFlags = 0
         var slideFlags = 0
-        if (recyclerView.layoutManager is StackLayoutManager) {
+        if (recyclerView.layoutManager is StackLayoutManager<*>) {
             slideFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
         }
         return makeMovementFlags(dragFlags, slideFlags)
@@ -47,7 +47,7 @@ class ItemTouchHelperCallback<T>() : ItemTouchHelper.Callback() {
         dataList?.add(remove)
         adapter?.notifyDataSetChanged()
         mListener?.onSlided(
-            viewHolder,
+            viewHolder,remove,
             if (direction == ItemTouchHelper.LEFT) ItemTouchHelperConfig.SLIDED_LEFT else ItemTouchHelperConfig.SLIDED_RIGHT
         )
     }

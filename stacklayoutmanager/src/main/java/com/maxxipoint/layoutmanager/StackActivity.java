@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.*;
 
 import com.maxxipoint.layoutmanager.adapter.SlideAdapter;
+import com.maxxipoint.layoutmanager.adapter.VpAdapter;
 import com.maxxipoint.layoutmanager.widget.MyRecyclerView;
 
 
@@ -22,7 +23,8 @@ public class StackActivity extends Activity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new SlideAdapter());
+//        recyclerView.setAdapter(new SlideAdapter());
+        recyclerView.setAdapter(new VpAdapter());
     }
 
 }
