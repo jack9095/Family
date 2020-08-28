@@ -14,12 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.maxxipoint.customlayoutmanager.BuildConfig;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.BuildConfig;
 
 
 public class StackLayoutManager extends RecyclerView.LayoutManager {

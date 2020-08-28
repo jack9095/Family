@@ -33,19 +33,33 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
         return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
+    /**
+     * onLayoutChildren() 方法顾名思义，
+     * 就是对所有的 itemView 进行布局，一般会在初始化和调用 Adapter 的 notifyDataSetChanged() 方法时调用
+     */
     @Override
     public void onLayoutChildren(final RecyclerView.Recycler recycler, RecyclerView.State state) {
-        detachAndScrapAttachedViews(recycler);
+        /*
+         * 方法会将所有的 itemView 从View树中全部detach，然后放入scrap缓存中
+         * RecyclerView是有一个二级缓存的，一级缓存是 scrap 缓存,
+         * 二级缓存是 recycler 缓存，其中从View树上detach的View会放入scrap缓存里，
+         * 调用removeView()删除的View会放入recycler缓存中
+         */
+        detachAndScrapAttachedViews(recycler); // 复用机制 将视图分离放入scrap缓存中，以准备重新对view进行排版
         int itemCount = getItemCount();
         // 当数据源个数大于最大显示数时
         if (itemCount > CardConfig.DEFAULT_SHOW_ITEM) {
             for (int position = CardConfig.DEFAULT_SHOW_ITEM; position >= 0; position--) {
+                // 初始化，获取某个位置需要展示的 View
                 final View view = recycler.getViewForPosition(position);
+                // 将在屏幕内的view填充
                 addView(view);
+
+                // 测量itemView的宽高
                 measureChildWithMargins(view, 0, 0);
                 int widthSpace = getWidth() - getDecoratedMeasuredWidth(view);
                 int heightSpace = getHeight() - getDecoratedMeasuredHeight(view);
-                // recyclerview 布局
+                // recyclerview 根据 itemView 的宽高进行布局
                 layoutDecoratedWithMargins(view, widthSpace / 2, heightSpace / 2,
                         widthSpace / 2 + getDecoratedMeasuredWidth(view),
                         heightSpace / 2 + getDecoratedMeasuredHeight(view));
@@ -93,7 +107,7 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             childViewHolder = mRecyclerView.getChildViewHolder(v);
-            gestureDetector.onTouchEvent(event);
+            gestureDetector.onTouchEvent(event); // 在 onTouch 方法中只能这么做，不然手势不生效
             return true;
         }
     };

@@ -1,5 +1,7 @@
 package com.xxzy.family
 
+import android.Manifest
+import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.dragpicturegoback.ImageViewerDialogFragment
@@ -28,6 +30,37 @@ class DragPictureGoBackActivity : BaseViewModelActivity<DragPictureGoBackViewMod
         recyclerView.adapter = adapter
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("onCreate = ","onCreate ** onCreate")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.e("onRestart = ","onRestart ** onRestart")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.e("onStart = ","onStart ** onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("onResume = ","onResume ** onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("onPause = ","onPause ** onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("onStop = ","onStop ** onStop")
+    }
+
+
     override fun dataObserver() {
 
     }
@@ -35,6 +68,11 @@ class DragPictureGoBackActivity : BaseViewModelActivity<DragPictureGoBackViewMod
     override fun providerVMClass(): Class<DragPictureGoBackViewModel> = DragPictureGoBackViewModel::class.java
 
     override fun initView() {
+
+        if (!hasPermissions(Manifest.permission.CAMERA)) {
+            requestPermissions(0,Manifest.permission.CAMERA)
+        }
+
         X.appContext = this.applicationContext
         Config.TRANSITION_OFFSET_Y = statusBarHeight()
     }
@@ -48,6 +86,7 @@ class DragPictureGoBackActivity : BaseViewModelActivity<DragPictureGoBackViewMod
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.e("onDestroy = ","onDestroy ** onDestroy")
         Trans.mapping.clear()
     }
 }

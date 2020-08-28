@@ -49,7 +49,7 @@ public class BaseOverlayPageAdapter extends PagerAdapter {
      * @return
      */
     protected View itemView(){
-        return mInflater.inflate(com.maxxipoint.layoutmanager.R.layout.item_slide, null);
+        return mInflater.inflate(R.layout.item_slide_vp, null);
     }
 
     public void setImgUrlsAndBindViewPager(ViewPager vp, String[] imgUrls, int layerAmount) {
@@ -78,7 +78,6 @@ public class BaseOverlayPageAdapter extends PagerAdapter {
         if (imgUrls.length <= 1)
             return imgUrls.length;
         return Integer.MAX_VALUE;
-//        return NUM_SONGS;
     }
 
     @Override
@@ -86,15 +85,15 @@ public class BaseOverlayPageAdapter extends PagerAdapter {
         return view == o;
     }
 
-//    protected ImageView findImageView(View rootView) {
-//        ImageView iv = rootView.findViewById(R.id.img_head);
-//        if (null != iv)
-//            return iv;
-//        if (rootView instanceof ImageView) {
-//            return (ImageView) itemView();
-//        }
-//        throw new RuntimeException("you should set one of ImageViews id=card_iv or rootView=ImageView");
-//    }
+    protected ImageView findImageView(View rootView) {
+        ImageView iv = rootView.findViewById(R.id.img_head);
+        if (null != iv)
+            return iv;
+        if (rootView instanceof ImageView) {
+            return (ImageView) itemView();
+        }
+        throw new RuntimeException("you should set one of ImageViews id=card_iv or rootView=ImageView");
+    }
 
     @NonNull
     @Override
@@ -103,15 +102,14 @@ public class BaseOverlayPageAdapter extends PagerAdapter {
         final String imgUrl = imgUrls[p];
 //        View view = mReusableViews.poll();
 //        if (view == null) {
-//        View view = itemView();
-        View view = mInflater.inflate(R.layout.item_slide_vp, null);
+        View view = itemView();
             if (null == view) {
                 throw new RuntimeException("you should set a item layout");
             }
 //        }
 
-//        final ImageView iv = findImageView(view);
-        final ImageView iv = view.findViewById(R.id.img_head);
+        final ImageView iv = findImageView(view);
+//        final ImageView iv = view.findViewById(R.id.img_head);
         if (null == iv) {
             throw new RuntimeException("you should set a item layout");
         }

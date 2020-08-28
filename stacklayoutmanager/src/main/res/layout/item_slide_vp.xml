@@ -1,213 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="12dp"-->
+<!--        android:layout_marginRight="12dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:elevation="16dp"-->
+<!--        app:cardBackgroundColor="#fff"-->
+<!--        app:cardCornerRadius="8dp"-->
+<!--        app:cardElevation="2dp">-->
+
+    <com.maxxipoint.layoutmanager.use.tool.ShadowLayout
+        android:id="@+id/mShadowLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:elevation="10dp"
-        app:cardBackgroundColor="#fff"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="2dp">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="329dp"
-        android:layout_height="125dp"
-        android:paddingEnd="12dp">
-
-        <ImageView
-            android:id="@+id/img_head"
-            android:layout_width="101dp"
-            android:layout_height="101dp"
-            android:layout_marginStart="12dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="从百草园到三味书屋"
-            android:textColor="#111111"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/cl"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/img_head"
-            app:layout_constraintTop_toTopOf="@id/img_head"
-            app:layout_constraintWidth_default="wrap"
-            tools:ignore="MissingConstraints" />
+        app:hl_cornerRadius="8dp"
+        app:hl_shadowColor="#19000000"
+        app:hl_shadowLimit="3dp"
+        app:hl_shadowOffsetX="1dp"
+        app:hl_shadowOffsetY="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl"
-            android:layout_width="54dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/shape_state"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_title"
-            app:layout_constraintTop_toTopOf="@+id/tv_title"
-            tools:ignore="MissingConstraints">
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:paddingEnd="12dp">
 
             <ImageView
-                android:id="@+id/iv_title_icon"
-                android:layout_width="8dp"
-                android:layout_height="9dp"
-                android:layout_marginTop="3dp"
+                android:id="@+id/img_head"
+                android:layout_width="101dp"
+                android:layout_height="101dp"
+                android:layout_marginStart="12dp"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/header_icon_1"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/tv_title_tag"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginStart="12dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="读书中"
-                android:textColor="#ffffff"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/iv_title_icon"
-                app:layout_constraintTop_toTopOf="parent"
+                android:text="从百草园到三味书屋"
+                android:textColor="#111111"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/cl"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/img_head"
+                app:layout_constraintTop_toTopOf="@id/img_head"
+                app:layout_constraintWidth_default="wrap"
                 tools:ignore="MissingConstraints" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl"
+                android:layout_width="54dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/shape_state"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_title"
+                app:layout_constraintTop_toTopOf="@+id/tv_title"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:id="@+id/iv_title_icon"
+                    android:layout_width="8dp"
+                    android:layout_height="9dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/header_icon_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tv_title_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="读书中"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iv_title_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="碧绿的树叶"
+                android:textColor="#666666"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toRightOf="@id/img_head"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/img_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/header_icon_1"
+                app:layout_constraintLeft_toRightOf="@id/tv_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/img_content_one"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/header_icon_1"
+                android:visibility="visible"
+                app:layout_constraintLeft_toRightOf="@id/img_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:ignore="MissingConstraints,PrivateResource" />
+
+            <ImageView
+                android:id="@+id/img_content_two"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/header_icon_1"
+                android:visibility="visible"
+                app:layout_constraintLeft_toRightOf="@id/img_content_one"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:ignore="MissingConstraints,PrivateResource" />
+
+            <!--<TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_tag"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="连续获得3次好评"
+                android:textColor="#FF7340"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toRightOf="@id/img_head"
+                app:layout_constraintTop_toBottomOf="@id/tv_content"
+                tools:ignore="MissingConstraints" />-->
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape_tag"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="1111"
+                android:textColor="#FF7340"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/tv_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_content"
+                app:layout_constraintWidth_default="wrap"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_btm_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="常和他"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_head"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/tv_tag"
+                app:layout_constraintWidth_default="wrap" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="碧绿的树叶"
-            android:textColor="#666666"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toRightOf="@id/img_head"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:ignore="MissingConstraints" />
-
-        <ImageView
-            android:id="@+id/img_content"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/header_icon_1"
-            app:layout_constraintLeft_toRightOf="@id/tv_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:ignore="MissingConstraints" />
-
-        <ImageView
-            android:id="@+id/img_content_one"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/header_icon_1"
-            android:visibility="visible"
-            app:layout_constraintLeft_toRightOf="@id/img_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:ignore="MissingConstraints,PrivateResource" />
-
-        <ImageView
-            android:id="@+id/img_content_two"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/header_icon_1"
-            android:visibility="visible"
-            app:layout_constraintLeft_toRightOf="@id/img_content_one"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:ignore="MissingConstraints,PrivateResource" />
-
-        <!--<TextView
-            android:id="@+id/tv_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/shape_tag"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="连续获得3次好评"
-            android:textColor="#FF7340"
-            android:textSize="11sp"
-            app:layout_constraintLeft_toRightOf="@id/img_head"
-            app:layout_constraintTop_toBottomOf="@id/tv_content"
-            tools:ignore="MissingConstraints" />-->
-
-        <TextView
-            android:id="@+id/tv_tag"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/shape_tag"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="连续获得3次好评1111111111111111111111111"
-            android:textColor="#FF7340"
-            android:textSize="11sp"
-            app:layout_constraintLeft_toRightOf="@id/img_head"
-            app:layout_constraintTop_toBottomOf="@id/tv_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintWidth_default="wrap"
-            tools:ignore="MissingConstraints" />
-
-
-        <TextView
-            android:id="@+id/tv_btm_content"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="常和他⼀起学习，常和他⼀起学习，常和他⼀起学习，常和他⼀起学习，
-        常和他⼀起学习"
-            android:textColor="#999999"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/img_head"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_tag"
-            app:layout_constraintWidth_default="wrap"
-            tools:ignore="MissingConstraints" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+<!--    </androidx.cardview.widget.CardView>-->
+    </com.maxxipoint.layoutmanager.use.tool.ShadowLayout>
+</FrameLayout>

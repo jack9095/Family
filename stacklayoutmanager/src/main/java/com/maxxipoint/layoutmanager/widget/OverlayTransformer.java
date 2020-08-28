@@ -6,8 +6,14 @@ import android.view.View;
 import androidx.viewpager.widget.ViewPager;
 
 public class OverlayTransformer implements ViewPager.PageTransformer {
+
+    String[] arrsys = {
+            "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1383192171,3573826053&fm=26&gp=0.jpg",
+            "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3577773561,2706257243&fm=26&gp=0.jpg"
+    };
+
     private float scaleOffset = 50;
-    private float transOffset = 50;
+    private float transOffset = 62;
     private int overlayCount;
 
     public OverlayTransformer(int overlayCount) {
@@ -43,8 +49,8 @@ public class OverlayTransformer implements ViewPager.PageTransformer {
 //        float scale = (page.getWidth() - scaleOffset * (position % overlayCount)) / (float) (page.getWidth());
         float scaleX = (page.getWidth() - scaleOffset * position) / (float) (page.getWidth());
         float scaleY = (page.getHeight() - scaleOffset * position) / (float) (page.getHeight());
-        Log.e("OverlayTransformer ","scaleX = " + scaleX);
-        Log.e("OverlayTransformer ","scaleY = " + scaleY);
+        Log.e("OverlayTransformer ", "scaleX = " + scaleX);
+        Log.e("OverlayTransformer ", "scaleY = " + scaleY);
         if (scaleX <= -3.3f) {
             scaleX = -3.3f;
         }
@@ -60,9 +66,11 @@ public class OverlayTransformer implements ViewPager.PageTransformer {
             float lastPositionOffset = transOffset * (float) Math.floor(position - 1);  // 上一个卡片的偏移量
             float singleOffset = 1 - Math.abs(position % (int) position);
             float transX = (-page.getWidth() * position) + (lastPositionOffset + singleOffset * (curPositionOffset - lastPositionOffset));
+            Log.e("X轴偏移 = ", transX + "");
             page.setTranslationX(transX);
         } else if (position <= overlayCount - 1) {
             float transX = (-page.getWidth() * position) + (transOffset * position);
+            Log.e("X轴偏移 else = ", transX + "");
             page.setTranslationX(transX);
         } else {
             page.setAlpha(0f);
