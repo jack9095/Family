@@ -1,3 +1,4 @@
+include ':reader'
 include ':customlayoutmanager'
 include ':cardscrollpage'
 include ':stacklayoutmanager'

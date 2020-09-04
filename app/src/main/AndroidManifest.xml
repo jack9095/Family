@@ -34,7 +34,8 @@
         </activity>
         <activity android:name=".DragPictureGoBackActivity" />
         <activity android:name=".PagingActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
