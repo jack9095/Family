@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorActivityBackground"
+    android:onClick="bgclick"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <com.xxzy.family.round.simplify.RCFrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        app:round_corner="4dp"
+        >
+
+        <!--app:stroke_color="#E39E83"
+        app:stroke_width="2dp"
+        app:round_corner_top_left="4dp"-->
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="click"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+    </com.xxzy.family.round.simplify.RCFrameLayout>
+
+    <com.xxzy.family.round.RCRelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        app:round_corner="30dp"
+        app:round_corner_top_right="0dp"
+        app:stroke_color="#E39E83"
+        app:stroke_width="2dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="click"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+    </com.xxzy.family.round.RCRelativeLayout>
+
+    <com.xxzy.family.round.RCRelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        app:round_corner="30dp"
+        app:round_corner_bottom_left="0dp"
+        app:stroke_color="#E39E83"
+        app:stroke_width="2dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="click"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+    </com.xxzy.family.round.RCRelativeLayout>
+
+    <com.xxzy.family.round.RCRelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:round_corner="30dp"
+        app:round_corner_bottom_right="0dp"
+        app:stroke_color="#E39E83"
+        app:stroke_width="2dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="click"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+    </com.xxzy.family.round.RCRelativeLayout>
+
+    <com.xxzy.family.round.RCImageView
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        app:round_corner="30dp"
+        app:round_corner_bottom_right="0dp"
+        app:round_corner_bottom_left="0dp"
+        app:clip_background="false"
+        android:background="#ccc"
+        app:stroke_color="#E39E83"
+        app:stroke_width="2dp" />
+
+    <com.xxzy.family.round.RCRelativeLayout
+        android:layout_width="240dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:padding="10dp"
+        app:clip_background="true"
+        app:round_as_circle="true"
+        app:round_corner="30dp"
+        app:round_corner_bottom_right="0dp"
+        app:stroke_color="#66000000"
+        app:stroke_width="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="click"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_alignParentBottom="true"
+            android:background="#995F5652"
+            android:gravity="center_horizontal"
+            android:text="害怕.png"
+            android:textColor="#fff"
+            android:textSize="24sp" />
+
+    </com.xxzy.family.round.RCRelativeLayout>
+
+</RelativeLayout>

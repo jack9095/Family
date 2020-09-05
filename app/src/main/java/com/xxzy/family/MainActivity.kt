@@ -76,6 +76,7 @@ class MainActivity : BaseViewModelActivity<MainViewModel>(), View.OnClickListene
     override fun initData() {
         viewModel.loadData()
         round_rl.setRoundMode(3)
+//        round_rl.setRadius(4f)
     }
 
     override fun dataObserver() {
